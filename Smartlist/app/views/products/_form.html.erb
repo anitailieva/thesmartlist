@@ -1,0 +1,44 @@
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, 'error') %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= # noinspection RubyResolve
+        f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_area :name, placeholder: 'your product name', cols: '40' %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price, class: :text_field, step: 0.01, placeholder: 'price', size: '42x10' %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, placeholder: 'product description', cols: '40' %>
+  </div>
+  <div class="field">
+    <%= f.label :store %><br>
+    <%= f.text_area :store, placeholder: 'where you buy it', cols: '40' %>
+  </div>
+    <br>
+<!--  <div class="field">
+    <%= #TODO: Saving of information about favourite store that sells the product
+        #TODO: can be implemented in next version of the web page
+        f.label :favourite_store_id %><br>
+    <%= f.number_field :favourite_store_id %>
+  </div>-->
+  <div class="actions">
+    <%= f.submit 'add product', class: 'button btn btn-sign-in' %>
+  </div>
+<% end %>

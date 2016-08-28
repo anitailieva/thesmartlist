@@ -1,0 +1,41 @@
+<head>
+  <% content_for :title, 'Create store' %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h3 class="page-header"><strong>Create user</strong></h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+          <%= form_tag controller: :admin, action: :create_user, store: true  do %>
+              <div class="field">
+                <%= email_field_tag :user_email, nil, placeholder: 'store email', required: 'required' %>
+              </div>
+              </br>
+              <div class="actions">
+                <%= submit_tag "Create" %>
+              </div>
+          <% end %>
+          <div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<title><%= yield(:title) %></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%= # noinspection RailsParamDefResolve
+    stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= # noinspection RailsParamDefResolve
+    javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+<body>
+
+<% # noinspection RubyResolve
+   if current_user %>
+
+    <% # noinspection RubyResolve
+       if current_user.admin? %>
+        <%= render 'navbars/navbar_admin' %>
+    <% elsif current_user.store? %>
+        <%= render 'navbars/navbar_store' %>
+    <% else %>
+        <%= render 'navbars/navbar_user' %>
+    <% end %>
+
+<% end %>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+<footer>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="footer-border"></div>
+        <p>Contact us at <%= link_to '#contact_us', :remote => true, 'data-toggle' => 'modal' do %>
+              <strong>SMARTLIST</strong>
+          <% end %>
+          <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal" id="contact_us" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="modal-title" id="modalLabel">Contact us</h3>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="well well-sm">
+                  <%= # noinspection RubyResolve
+                      form_tag(contact_us_path) do %>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+
+                            <div class="input-group">
+                              <div class="field">
+                                <%= email_field_tag :email, nil, placeholder: 'Enter your email',
+                                                    required: 'required' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="actions">
+                            <%= submit_tag 'send message', class: 'button btn btn-sign-in pull-left' %>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+
+                            <div class="field">
+                              <%= text_area_tag :message, nil, placeholder: 'Enter your message',
+                                                required: 'required', rows: 20 %>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!--modal-body-->
+      </div> <!--modal-content-->
+    </div> <!--modal-dialog-->
+  </div> <!--modal-->
+
+</footer>
+
+</body>
+</html>

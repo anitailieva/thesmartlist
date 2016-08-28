@@ -1,0 +1,79 @@
+<head>
+  <% content_for :title, 'Manage your sales' %>
+</head>
+
+<body>
+
+<div class="top-content">
+
+  <div class="inner-bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <h1 class="page-header"><strong>YOUR SALES</strong></h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-box">
+
+          <div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-7 col-sm-9">
+                    <h4>
+                      <strong>SALES</strong>
+                    </h4>
+                  </div>
+                  <div class="col-xs-5 col-sm-3">
+                    <%= # noinspection RubyResolve
+                        link_to 'add sale', new_sale_path, class: 'btn btn-success' %>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-fixed">
+                <thead>
+                <tr>
+                  <th class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Name</th>
+                  <th class="col-xs-4 col-sm-3 col-md-3 col-lg-3">Expiry Date</th>
+                  <th class="col-sm-3 col-md-3 col-lg-3"><div class="hidden-xs">Image URL</div></th>
+                  <th class="col-xs-2 col-sm-1 col-md-1 col-lg-1"></th>
+                  <th class="col-xs-2 col-sm-1 col-md-1 col-lg-1"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--TODO: Delete show button-->
+                <% @sales.each do |sale| %>
+                    <tr>
+                      <td class="col-xs-4 col-sm-3 col-md-3 col-lg-3 left-al-cell"><%= sale.name %></td>
+                      <td class="col-xs-4 col-sm-3 col-md-3 col-lg-3 left-al-cell">
+                        <%= sale.expiry_date.strftime('%d.%m.%Y %H:%M') %>
+                      </td>
+                      <td class="col-sm-3 col-md-3 col-lg-3 left-al-cell">
+                        <div class="hidden-xs"><%= sale.image_url %></div>
+                        </td>
+                      <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <%= # noinspection RubyResolve
+                            link_to 'Edit', edit_sale_path(sale), class: 'btn btn-info' %>
+                      </td>
+                      <td class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <%= link_to 'delete', sale, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-warning' %>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
