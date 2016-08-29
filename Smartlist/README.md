@@ -25,9 +25,6 @@ Attachments:
 ## Deploying
 Application is deployed on Heroku - https://thesmartlist.herokuapp.com/
 
-## Author
-Anita Ilieva
-
 
 ## Next version
 You can see list of things that developers plan to complete in the next version [here](https://github.com/Westerdals/PG4300-16-4-smartlist/issues/30)
