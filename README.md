@@ -1,4 +1,3 @@
-#PG4300-16-4-SmartList
 
 ##Project name: SMARTLIST
 
